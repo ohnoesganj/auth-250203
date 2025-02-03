@@ -10,7 +10,6 @@ import com.example.auth.global.exception.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.web.bind.annotation.*;
@@ -52,6 +51,7 @@ public class ApiV1PostController {
                 new PostDto(post)
         );
     }
+
 
     @DeleteMapping("/{id}")
     public RsData<Void> delete(@PathVariable long id) {
@@ -125,7 +125,7 @@ public class ApiV1PostController {
 
         Member actor = memberService.findById(authorId).get();
 
-        if (!actor.getPassword().equals(password)) {
+        if (!actor.getPassword2().equals(password)) {
             throw new ServiceException("401-1", "비밀번호가 일치하지 않습니다.");
         }
 
