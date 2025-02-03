@@ -22,8 +22,8 @@ public class Member extends BaseTime {
     @Column(length = 100)
     private String password;
 
-    @Column(length = 100)
-    private String password2;
+    @Column(length = 100, unique = true)
+    private String apiKey;
 
     @Column(length = 100)
     private String nickname;

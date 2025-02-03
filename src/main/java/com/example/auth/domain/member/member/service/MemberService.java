@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -17,12 +18,10 @@ public class MemberService {
 
     public Member join(String username, String password, String nickname) {
 
-        UUID uuid = UUID.randomUUID();
-
         Member member = Member.builder()
                 .username(username)
                 .password(password)
-                .password2(uuid.toString())
+                .apiKey(username)
                 .nickname(nickname)
                 .build();
 
@@ -39,5 +38,9 @@ public class MemberService {
 
     public Optional<Member> findById(long id) {
         return memberRepository.findById(id);
+    }
+
+    public Optional<Member> findByApiKey(String apiKey) {
+        return memberRepository.findByApiKey(apiKey);
     }
 }
